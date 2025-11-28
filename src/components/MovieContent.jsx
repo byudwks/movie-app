@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import HeroSection from "./HeroSection";
+import MovieSlider from "./MovieSlider";
 
 export default function MovieContent() {
   return (
-    <div>
-      
-    </div>
-  )
+    <>
+      <HeroSection />
+      <div className="bg-linear-to-b from-neutral-900 to-neutral-950">
+        <MovieSlider />
+      </div>
+    </>
+  );
 }
