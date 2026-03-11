@@ -168,6 +168,102 @@ export default function MovieDetail() {
                     </div>
                   </div>
                 </div>
+                {/* Additonal  Details */}
+                <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <h2 className="text-xl font-semibold text-white mb-4"></h2>
+                    <div className="space-y-4">
+                      {/* contional renderign */}
+                      <div className="text-neutral-400 text-sm mb-1">
+                        <h3 className="text-neutral-400 text-sm mb-1">
+                          Productions Companies
+                        </h3>
+                        <p className="text-white">
+                          Movies Productions Counties
+                        </p>
+                      </div>
+                      <div className="text-neutral-400 text-sm mb-1">
+                        <h3 className="text-neutral-400 text-sm mb-1">
+                          Languages
+                        </h3>
+                        <p className="text-white">Language</p>
+                      </div>
+                      <div className="text-neutral-400 text-sm mb-1">
+                        <h3 className="text-neutral-400 text-sm mb-1">
+                          Budgets
+                        </h3>
+                        <p className="text-white">Movies Budget</p>
+                      </div>
+                      <div className="text-neutral-400 text-sm mb-1">
+                        <h3 className="text-neutral-400 text-sm mb-1">
+                          Revenue
+                        </h3>
+                        <p className="text-white">Revenue</p>
+                      </div>
+                      <div className="text-neutral-400 text-sm mb-1">
+                        <h3 className="text-neutral-400 text-sm mb-1">
+                          Status
+                        </h3>
+                        <p className="text-white">Status</p>
+                      </div>
+                      <div className="text-neutral-400 text-sm mb-1">
+                        <h3 className="text-neutral-400 text-sm mb-1">
+                          Original Language
+                        </h3>
+                        <p className="text-white">Original Language</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right Column */}
+                  <div>
+                    <h2 className="text-xl font-semibold text-white mb-4">
+                      Rating
+                    </h2>
+                    {/* Conditional Rendering */}
+                    <div className="flex items-center">
+                      <div className="w-24 h-24 rounded-full border-4 border-indigo-500 flex items-center justify-center mr-4">
+                        <span className="text-3xl font-bold">
+                          Movie Averange
+                        </span>
+                      </div>
+                    </div>
+                    <p className="text-neutral-700">Votes</p>
+                    <div className="w-full bg-neutral-700 rounded-full h-2.5 mt-2">
+                      <div className="bg-indigo-600 h-2.5 rounded-full"></div>
+                    </div>
+                  </div>
+                </div>
+                {/* else */}
+                <p className="text-neutral-400">No rating available</p>
+              </div>
+              {/* Imdb and homepage link */}
+              <div className="mt-8 space-y-4">
+                {/* conditional rendering */}
+                <a
+                  href=""
+                  className="inline-flex items-center bg-neutral-700 hover:bg-neutral-600 text-white px-4 py-2 rounded transition-all">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5 mr-2"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                    />
+                  </svg>
+                  Official Website
+                </a>
+                {/* contional rendering */}
+                <a
+                  href=""
+                  className="inline-flex items-center bg-yellow-700 hover:bg-yellow-600 text-white px-4 py-2 rounded transiton-colors">
+                  <svg></svg>View On Imdb
+                </a>
               </div>
             </div>
           </div>

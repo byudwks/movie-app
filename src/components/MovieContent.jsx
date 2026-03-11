@@ -13,7 +13,7 @@ export default function MovieContent() {
         <Genre />
       </div>
       {/* conditional rendering */}
-      <MovieDetail />
+      {/* <MovieDetail /> */}
     </>
   );
 }
