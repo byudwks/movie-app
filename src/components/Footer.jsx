@@ -54,67 +54,85 @@ function Footer() {
 
           <div>
             <h3 className="text-white font-semibold text-lg mb-4">
+              {" "}
               Quick Links
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href="#" className="hover:text-purple-400">
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a href="#trending" className="hover:text-purple-400">
-                    Treding
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-purple-400">
-                    Popullar
-                  </a>
-                </li>
-                <li>
-                  <a href="#top-rated" className="hover:text-purple-400">
-                    Top-Rated
-                  </a>
-                </li>
-                <li>
-                  <a href="#genres" className="hover:text-purple-400">
-                    Broswer by <Gendre></Gendre>
-                  </a>
-                </li>
-              </ul>
             </h3>
+            <ul className="space-y-2 text-sm text-neutral-500">
+              <li>
+                <a href="#" className="hover:text-indigo-400">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#trending" className="hover:text-indigo-400">
+                  Treding
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-indigo-400">
+                  Popullar
+                </a>
+              </li>
+              <li>
+                <a href="#top-rated" className="hover:text-indigo-400">
+                  Top Rated
+                </a>
+              </li>
+              <li>
+                <a href="#genres" className="hover:text-indigo-400">
+                  Broswer by Genre
+                </a>
+              </li>
+            </ul>
           </div>
           <div>
-            <h3 className="text-white font-semibold text-lg mb-4">
-              Resources
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href="#" className="hover:text-purple-400 transition-all">
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-purple-400  transition-all">
-                    Contact
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-purple-400">
-                    Blog
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-purple-400  transition-all">
-                    FaQ
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-purple-400">
-                    Help Center
-                  </a>
-                </li>
-              </ul>
-            </h3>
+            <h3 className="text-white font-semibold text-lg mb-4">Resources</h3>
+            <ul className="space-y-2 text-sm text-neutral-500">
+              <li>
+                <a href="#" className="hover:text-indigo-400 transition-all">
+                  About
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-indigo-400  transition-all">
+                  Contact
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-indigo-400">
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-indigo-400  transition-all">
+                  FaQ
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-indigo-400">
+                  Help Center
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-white font-semibold text-lg mb-4">Newletter</h3>
+            <p className="text-sm mb-4 ">
+              Subscribe to our newsletter for the latest updates and offers.
+            </p>
+            <form action="#" className="space-y-3">
+              <div className="relative">
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  className="w-full bg-neutral-800 text-white px-4 py-2 rounded-lg border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-colors text-sm"
+                />
+              </div>
+              <button className="w-full bg-indigo-500 hover:bg-indigo-700 text-white py-2 rounded-lg transition-all text-sm">
+                Subscribe
+              </button>
+            </form>
           </div>
         </div>
       </div>
