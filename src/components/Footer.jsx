@@ -135,6 +135,27 @@ function Footer() {
             </form>
           </div>
         </div>
+        <div className="border-t border-neutral-800 mt-10 pt-6 flex flex-col md:flex-row justify-between">
+          <p className="text-xs">
+            &copy; FilmFLix Movie App All rights reserved
+            <br className="md:hidden" />
+            <span className="hidden md:inline">. </span>Powered By{" "}
+            <a href="#" className="text-indigo-400 hover:text-indigo-500">
+              FilmFLix
+            </a>
+          </p>
+          <div className="flex space-x-4 mt-4 md:mt-0 text-xs">
+            <a href="#" className=" hover:text-indigo-500 transition-all">
+              Privacy Policy
+            </a>
+            <a href="#" className=" hover:text-indigo-500 transition-all">
+              Terms of Service
+            </a>
+            <a href="#" className=" hover:text-indigo-500 transition-all">
+              Cookies Policy
+            </a>
+          </div>
+        </div>
       </div>
     </footer>
   );
