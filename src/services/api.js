@@ -53,7 +53,7 @@ export const fetchGenre = async () => {
   }
 };
 
-export const fetchMovieDetails = async (movieId) => {
+export const fetchMoviesDetails = async (movieId) => {
   try {
     const response = await fetch(
       `${BASE_Url}/movie/${movieId}?api_key=${API_Key}&language=en-US`,

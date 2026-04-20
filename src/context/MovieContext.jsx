@@ -1,14 +1,15 @@
-import { createdContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import {
   fetchMovies,
   fetchTopMovies,
   fetchMoviesByGenre,
   fetchGenre,
-  fetchMovieDetails,
+  fetchMoviesDetails,
   searchMovies,
-} from "..services/api";
+} from "../services/api";
 
-const MovieContext = createdContext();
+const MovieContext = createContext();
+export const useMovies = () => useContext(MovieContext);
 
 export const MovieProvider = ({ children }) => {
   useContext(MovieContext);
@@ -40,5 +41,33 @@ export const MovieProvider = ({ children }) => {
         setLoading(false);
       }
     };
-  });
+    fetchDataMovies();
+  }, []);
+
+  const openMovieDetail = (movieId) => {
+    selectedMovieId(movieId);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeMovieDetail = () => {
+    selectedMovieId(null);
+    document.body.style.overflow = "";
+  };
+
+  return (
+    <MovieContext
+      value={{
+        trendingMovies,
+        popularMovies,
+        topRatedMovies,
+        genres,
+        loading,
+        error,
+        selectedMovies,
+        openMovieDetail,
+        closeMovieDetail,
+      }}>
+      {children}
+    </MovieContext>
+  );
 };

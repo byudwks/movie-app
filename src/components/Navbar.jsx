@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScorelled = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScorelled);
+    return () => window.removeEventListener("scroll", handleScorelled);
+  });
+
   return (
-    <header className={`flex w-full z-50 transition-all duration-300`}>
+    <header
+      className={`flex w-full z-50 transition-all duration-300 ${isScrolled ? "bg-neutral-900/95 backdrop-blur-md shadow-lg" : "bg-transparent"} `}>
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
