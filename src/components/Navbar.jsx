@@ -152,7 +152,7 @@ function Navbar() {
           {/* mobile menu button */}
           <button
             className="md:hidden text-white"
-            onclick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
             {/* conditional rendering */}
             {isMobileMenuOpen ? (
               <svg

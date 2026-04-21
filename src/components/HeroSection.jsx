@@ -1,6 +1,36 @@
 import React from "react";
+import { useMovies } from "../context/MovieContext";
+import { useState, useEffect } from "react";
 
 export default function HeroSection() {
+  const { trendingMovies, loading } = useMovies();
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const featuredMovie = trendingMovies.slice(0, 5);
+
+  useEffect(() => {
+    if (loading || featuredMovie.length === 0) return;
+    const interval = setInterval(() => {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentSlide((prev) => (prev + 1) % featuredMovie.length);
+        setIsTransitioning(false);
+      }, 700);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [loading, featuredMovie.length]);
+
+  if (loading || featuredMovie.length === 0) {
+    return (
+      <div className="relative w-full h-screen flex items-center justify-center bg-neutral-900">
+        <div className="animate-pulse flex flex-col items-center">
+          <div className="w-16 h-16 border-4 border-indigo-500 rounded-full border-t-transparent animate-spin"></div>
+          <p className="mt-4 text-neutral-400">Loading Movies....</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="relative w-full h-screen">
       {/* movies backdrop */}
