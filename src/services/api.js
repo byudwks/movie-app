@@ -1,5 +1,5 @@
 const API_Key = "ab3d46f7066e7894f577bfc693930456";
-const BASE_Url = "https://www.themoviedb.org/3";
+const BASE_Url = "https://api.themoviedb.org/3";
 
 export const fetchMovies = async () => {
   try {
@@ -77,4 +77,10 @@ export const searchMovies = async (query) => {
     console.error("Error searching movies:", error);
     return [];
   }
+};
+
+export const getImageUrl = (path, size = "original") => {
+  if (!path)
+    return "https://via.placeholder.com/400x600?text=No+Image+Available";
+  return `https://image.tmdb.org/t/p/${size}${path}`;
 };
