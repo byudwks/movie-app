@@ -8,12 +8,12 @@ function Footer() {
           <div>
             <a href="" className="inline-block mb-6">
               <span className="text-indigo-500 font-bold text-2xl">
-                Film <span className="text-white">flix</span>
+                Film<span className="text-white">Box</span>
               </span>
             </a>
             <p className=" mb-4 text-sm">
               Discover and explore the latest movie from arround the world.
-              Flimmix gives you to a vast collection of film accross all genre
+              FilmBox gives you to a vast collection of film accross all genre
             </p>
             <div className="flex space-x-4">
               <a
@@ -137,7 +137,7 @@ function Footer() {
         </div>
         <div className="border-t border-neutral-800 mt-10 pt-6 flex flex-col md:flex-row justify-between">
           <p className="text-xs">
-            &copy; FilmFLix Movie App All rights reserved
+            &copy; FilmBox Movie App All rights reserved
             <br className="md:hidden" />
             <span className="hidden md:inline">. </span>Powered By{" "}
             <a href="#" className="text-indigo-400 hover:text-indigo-500">

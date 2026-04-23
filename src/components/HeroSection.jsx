@@ -45,8 +45,8 @@ export default function HeroSection() {
           backgroundImage: `url(${getImageUrl(currentMovie.backdrop_path)})`,
         }}>
         {/* gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-neutral-900 via-neutral-900/70 to-neutral-900/20"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-neutral-900 to-transparent"></div>
+        <div className="absolute inset-0 bg-linear-to-r from-neutral-900 via-neutral-900/70 to-neutral-900/20"></div>
+        <div className="absolute inset-0 bg-linear-to-r from-neutral-900 to-transparent"></div>
       </div>
 
       {/* content */}
@@ -147,7 +147,7 @@ export default function HeroSection() {
                   setIsTransitioning(false);
                 }, 500);
               }}
-              className={`h-1.5 rounded-full transition-all ${currentSlide === index ? "bg-indigo-500" : "bg-neutral-600/50"}`}></button>
+              className={`h-1.5 w-8 rounded-full transition-all ease-in-out ${currentSlide === index ? "bg-indigo-500 scale-x-150 mx-2 " : "bg-neutral-600/50 cursor-pointer"}`}></button>
           );
         })}
       </div>
