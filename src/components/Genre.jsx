@@ -1,6 +1,49 @@
 import React from "react";
+import { fetchMoviesByGenre } from "../services/api";
+import { useState, useEffect } from "react";
+import { useMovies } from "../context/MovieContext";
 
 export default function Genre() {
+  const { genres, loading, openMovieDetails } = useMovies();
+  const [selectedGenre, setSelectedGenre] = useState(null);
+  const [genreMovies, setGenreMovies] = useState([]);
+  const [loadingGenreMovies, setLoadingGenreMovies] = useState(false);
+
+  useEffect(() => {
+    if (!loading && genres.length > 0) {
+      setSelectedGenre(genres[0]);
+    }
+  }, [loading, genres]);
+
+  useEffect(() => {
+    const LoadGenreMovies = async () => {
+      if (!selectedGenre) return;
+      setLoadingGenreMovies(true);
+      const movies = await fetchMoviesByGenre(selectedGenre.id);
+      setGenreMovies(movies.slice(0, 8));
+      setLoadingGenreMovies(false);
+    };
+    LoadGenreMovies();
+  }, [selectedGenre]);
+
+  if (loading || !selectedGenre) {
+    return (
+      <section className="py-12 bg-neutral-900">
+        <div className="container mx-auto px-4">
+          <div className="h-64 flex items-center">
+            <div className="animate-pulse">
+              <div className="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  const formatRating = (rating) => {
+    return (Math.round(rating * 10) / 10).toFixed(1);
+  };
+
   return (
     <section className="py-12 bg-neutral-900/50">
       <div className="container mx-auto px-4">
@@ -11,9 +54,13 @@ export default function Genre() {
         {/* genre tabs */}
         <div className="mb-8 overflow-x-auto pb-2">
           <div className="flex space-x-2 min-w-max">
-            <button className="px-4 py-2 rounded-md transition-colors text-sm">
-              Genre Name
-            </button>
+            {genres.slice(0, 10).map((gen) => {
+              return (
+                <button className="px-4 py-2 rounded-md transition-colors text-sm">
+                  {gen.name}
+                </button>
+              );
+            })}
           </div>
         </div>
 

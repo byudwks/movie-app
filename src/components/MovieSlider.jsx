@@ -112,7 +112,24 @@ export default function MovieSlider({ title, subtitle, movies = "" }) {
                       />
                       {/* movies Info */}
                     </div>
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end bottom-10 p-4">
+                      <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-md flex items-center justify-center gap-1 transition-all text-sm ">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-5 w-5"
+                          viewBox="0 0 20 20"
+                          fill="currentColor">
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                          />
+                        </svg>
+                        View Details
+                      </button>
+                    </div>
                   </div>
+
                   <div className="mt-2">
                     <h3 className="text-white text-sm font-medium truncate">
                       {movie.title}

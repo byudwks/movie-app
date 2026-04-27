@@ -62,18 +62,18 @@ export default function MovieDetail() {
               {/* Else */}
               <div className="w-full h-full bg-neutral-700"></div>
               {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-neutral-800 via-neutral-800/70 to-transparent"></div>
+              <div className="absolute inset-0 bg-linear-to-t from-neutral-800 via-neutral-800/70 to-transparent"></div>
             </div>
 
             <div className="p-6 md:p-8">
               <div className="md:flex gap-8 mt-32 md:-mt-48 relative">
                 {/* Poster */}
-                <div className="w-32 md:w-64 flex-shrink-0 mb-4 md:mb-0">
+                <div className="w-32 md:w-64 shrink-0 mb-4 md:mb-0">
                   <div className="rounded-lg overflow-hidden shadow-lg border border-neutral-700">
                     {/* Conditional Rendering */}
                     <img src="" alt="" className="w-full h-auto" />
                     {/* Else */}
-                    <div className="w-full aspect-[2/3] bg-neutral-700 flex items-center justify-center ">
+                    <div className="w-full aspect-2/3 bg-neutral-700 flex items-center justify-center ">
                       No Poster Available
                     </div>
                   </div>
