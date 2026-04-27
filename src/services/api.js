@@ -1,7 +1,7 @@
 const API_Key = "ab3d46f7066e7894f577bfc693930456";
 const BASE_Url = "https://api.themoviedb.org/3";
 
-export const fetchMovies = async () => {
+export const fetchPopularMovies = async () => {
   try {
     const response = await fetch(
       `${BASE_Url}/movie/popular?api_key=${API_Key}&language=en-US&page=1`,
@@ -30,7 +30,7 @@ export const fetchTopMovies = async () => {
 export const fetchMoviesByGenre = async (genreId) => {
   try {
     const response = await fetch(
-      `${BASE_Url}/discover/movie?api_key=${API_Key}&with_genres=${genreId}&language=en-US&page=1`,
+      `${BASE_Url}/discover/movie?api_key=${API_Key}&with_genres=${genreId}&language=en-US`,
     );
     const data = await response.json();
     return data.results;
@@ -43,10 +43,10 @@ export const fetchMoviesByGenre = async (genreId) => {
 export const fetchGenre = async () => {
   try {
     const response = await fetch(
-      `${BASE_Url}/genre/movie/list?api_key=${API_Key}&language=en-US&page=1`,
+      `${BASE_Url}/genre/movie/list?api_key=${API_Key}&language=en-US`,
     );
     const data = await response.json();
-    return data.results;
+    return data.genres;
   } catch (error) {
     console.error("Error fetching movies by genre:", error);
     return [];
@@ -83,4 +83,17 @@ export const getImageUrl = (path, size = "original") => {
   if (!path)
     return "https://via.placeholder.com/400x600?text=No+Image+Available";
   return `https://image.tmdb.org/t/p/${size}${path}`;
+};
+
+export const fetchTrendingMovies = async () => {
+  try {
+    const response = await fetch(
+      `${BASE_Url}/trending/movie/week?api_key=${API_Key}&language=en-US`,
+    );
+    const data = await response.json();
+    return data.results;
+  } catch (error) {
+    console.error("Error fetching trending movies:", error);
+    return [];
+  }
 };

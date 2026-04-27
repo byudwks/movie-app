@@ -27,7 +27,7 @@ export default function MovieContent() {
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWitdh={2}
+              strokeWidth={2}
               d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
             />
           </svg>
@@ -47,7 +47,7 @@ export default function MovieContent() {
       <HeroSection />
       <div className="bg-linear-to-b from-neutral-900 to-neutral-950">
         <MovieSlider
-          title="Popular Movies In This Week"
+          title="Trending Movies In This Week"
           subtitle="Stay Updated With What Everyone Else Is Watching"
           movies={trendingMovies}
           id="trending"
@@ -58,13 +58,13 @@ export default function MovieContent() {
           movies={popularMovies}
           id="popular"
         />
-        <Genre />
         <MovieSlider
-          title="Top Rated Movies "
-          subtitle="Most Highly Rated Movies Of All Time"
+          title="Top Rated Movies"
+          subtitle="The Best Movies of All Time"
           movies={topRatedMovies}
           id="top-rated"
         />
+        <Genre />
       </div>
     </>
   );

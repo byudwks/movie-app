@@ -1,6 +1,7 @@
-import { createContext, useContext, useState, useEffect, use } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import {
-  fetchMovies,
+  fetchPopularMovies,
+  fetchTrendingMovies,
   fetchTopMovies,
   fetchMoviesByGenre,
   fetchGenre,
@@ -24,15 +25,16 @@ export const MovieProvider = ({ children }) => {
   useEffect(() => {
     const fetchDataMovies = async () => {
       try {
-        // setLoading(true);
-        const [trending, popular, topRates, genreList] = await Promise.all([
-          fetchMovies(),
+        setLoading(true);
+        const [trending, popular, topRated, genreList] = await Promise.all([
+          fetchTrendingMovies(),
+          fetchPopularMovies(),
           fetchTopMovies(),
           fetchGenre(),
         ]);
         setTrendingMovies(trending);
         setPopularMovies(popular);
-        setTopRatedMovies(topRates);
+        setTopRatedMovies(topRated);
         setGenres(genreList);
       } catch (error) {
         console.log("Error fetching movies:", error);
@@ -45,12 +47,12 @@ export const MovieProvider = ({ children }) => {
   }, []);
 
   const openMovieDetail = (movieId) => {
-    selectedMovieId(movieId);
+    selectedMovies(movieId);
     document.body.style.overflow = "hidden";
   };
 
   const closeMovieDetail = () => {
-    selectedMovieId(null);
+    selectedMovies(null);
     document.body.style.overflow = "";
   };
 

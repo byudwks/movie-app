@@ -4,7 +4,7 @@ import { getImageUrl } from "../services/api";
 import { useRef, useState, useEffect } from "react";
 import { useMovies } from "../context/MovieContext";
 
-export default function MovieSlider({ title, subtitle, movies = "" }) {
+export default function MovieSlider({ title, subtitle, movies = [] }) {
   const sliderRef = useRef(null);
   const [isScrolling, setIsScrolling] = useState(false);
   const [hoveredMovieId, setHoveredMovieId] = useState(null);
@@ -29,11 +29,11 @@ export default function MovieSlider({ title, subtitle, movies = "" }) {
   };
 
   const formatRating = (rating) => {
-    retrun(Math.round(rating * 10) / 10).toFixed(1);
+    return (Math.round(rating * 10) / 10).toFixed(1);
   };
 
-  const handleMovieClick = (moviesId) => {
-    openMovieDetails(movies.id);
+  const handleMovieClick = (movieId) => {
+    openMovieDetails(movieId);
   };
 
   if (!movies || movies.length === 0) {

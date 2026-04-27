@@ -11,15 +11,30 @@ export default function HeroSection() {
 
   useEffect(() => {
     if (loading || featuredMovie.length === 0) return;
+
     const interval = setInterval(() => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentSlide((prev) => (prev + 1) % featuredMovie.length);
-        setIsTransitioning(false);
-      }, 700);
-    }, 5000);
+      handleNextSlide();
+    }, 6000); // Naikkan durasi sedikit agar tidak terlalu cepat
+
     return () => clearInterval(interval);
-  }, [loading, featuredMovie.length]);
+  }, [loading, featuredMovie.length, currentSlide]);
+
+  // Fungsi navigasi yang smooth
+  const handleNextSlide = (index = null) => {
+    if (isTransitioning) return;
+
+    setIsTransitioning(true);
+
+    // Memberi waktu fade out (sesuai durasi transition di CSS)
+    setTimeout(() => {
+      if (index !== null) {
+        setCurrentSlide(index);
+      } else {
+        setCurrentSlide((prev) => (prev + 1) % featuredMovie.length);
+      }
+      setIsTransitioning(false);
+    }, 700);
+  };
 
   if (loading || featuredMovie.length === 0) {
     return (
@@ -37,17 +52,24 @@ export default function HeroSection() {
   };
 
   return (
-    <div className="relative w-full h-screen">
+    <div className="relative w-full h-screen overflow-hidden bg-black">
       {/* movies backdrop */}
-      <div
-        className={`absolute inset-0 bg-cover bg-center bg-neutral-900 transition-all duration-700 ${isTransitioning ? "opacity-0" : " opacity-100"}`}
-        style={{
-          backgroundImage: `url(${getImageUrl(currentMovie.backdrop_path)})`,
-        }}>
-        {/* gradient overlay */}
-        <div className="absolute inset-0 bg-linear-to-r from-neutral-900 via-neutral-900/70 to-neutral-900/20"></div>
-        <div className="absolute inset-0 bg-linear-to-r from-neutral-900 to-transparent"></div>
-      </div>
+      {featuredMovie.map((movie, index) => (
+        <div
+          key={movie.id}
+          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out ${
+            index === currentSlide ? "opacity-100 z-0" : "opacity-0 -z-10"
+          }`}
+          style={{
+            backgroundImage: `url(${getImageUrl(movie.backdrop_path)})`,
+            // Force hardware acceleration
+            transform: "translateZ(0)",
+          }}>
+          {/* Gradients */}
+          <div className="absolute inset-0 bg-gradient-to-r from-neutral-900 via-neutral-900/70 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-transparent"></div>
+        </div>
+      ))}
 
       {/* content */}
       <div className="absolute inset-0 flex items-center z-10 container mx-auto px-4">
@@ -135,21 +157,18 @@ export default function HeroSection() {
       </div>
 
       {/* pagination */}
-      <div className="absolute bottom-10 left-0 right-0 flex justify-center gap-2 z-10">
-        {featuredMovie.map((_, index) => {
-          return (
-            <button
-              key={index}
-              onClick={() => {
-                setIsTransitioning(true);
-                setTimeout(() => {
-                  setCurrentSlide(index);
-                  setIsTransitioning(false);
-                }, 500);
-              }}
-              className={`h-1.5 w-8 rounded-full transition-all ease-in-out ${currentSlide === index ? "bg-indigo-500 scale-x-150 mx-2 " : "bg-neutral-600/50 cursor-pointer"}`}></button>
-          );
-        })}
+      <div className="absolute bottom-12 left-0 right-0 flex justify-center gap-3 z-30">
+        {featuredMovie.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => handleNextSlide(index)}
+            className={`h-2 rounded-full transition-all duration-500 ${
+              currentSlide === index
+                ? "bg-indigo-500 w-12"
+                : "bg-indigo-900 w-2 hover:bg-indigo-500/40"
+            }`}
+          />
+        ))}
       </div>
     </div>
   );
