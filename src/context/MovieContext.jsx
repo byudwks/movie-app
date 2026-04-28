@@ -47,12 +47,12 @@ export const MovieProvider = ({ children }) => {
   }, []);
 
   const openMovieDetail = (movieId) => {
-    selectedMovies(movieId);
+    setSelectedMovies(movieId);
     document.body.style.overflow = "hidden";
   };
 
   const closeMovieDetail = () => {
-    selectedMovies(null);
+    setSelectedMovies(null);
     document.body.style.overflow = "";
   };
 

@@ -8,7 +8,7 @@ export default function MovieSlider({ title, subtitle, movies = [] }) {
   const sliderRef = useRef(null);
   const [isScrolling, setIsScrolling] = useState(false);
   const [hoveredMovieId, setHoveredMovieId] = useState(null);
-  const { openMovieDetails } = useMovies();
+  const { openMovieDetail } = useMovies();
 
   const handleScroll = (direction) => {
     if (isScrolling) return;
@@ -33,7 +33,7 @@ export default function MovieSlider({ title, subtitle, movies = [] }) {
   };
 
   const handleMovieClick = (movieId) => {
-    openMovieDetails(movieId);
+    openMovieDetail(movieId);
   };
 
   if (!movies || movies.length === 0) {

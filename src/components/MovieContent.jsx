@@ -66,6 +66,10 @@ export default function MovieContent() {
         />
         <Genre />
       </div>
+
+      {selectedMovies && (
+        <MovieDetail movieId={selectedMovies} onClose={closeMovieDetail} />
+      )}
     </>
   );
 }

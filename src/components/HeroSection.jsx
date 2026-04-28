@@ -66,8 +66,8 @@ export default function HeroSection() {
             transform: "translateZ(0)",
           }}>
           {/* Gradients */}
-          <div className="absolute inset-0 bg-gradient-to-r from-neutral-900 via-neutral-900/70 to-transparent"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-transparent"></div>
+          <div className="absolute inset-0 bg-linear-to-r from-neutral-900 via-neutral-900/70 to-transparent"></div>
+          <div className="absolute inset-0 bg-linear-to-t from-neutral-900 via-transparent to-transparent"></div>
         </div>
       ))}
 
@@ -162,10 +162,10 @@ export default function HeroSection() {
           <button
             key={index}
             onClick={() => handleNextSlide(index)}
-            className={`h-2 rounded-full transition-all duration-500 ${
+            className={`h-2 rounded-full transition-all duration-500 cursor-pointer ${
               currentSlide === index
                 ? "bg-indigo-500 w-12"
-                : "bg-indigo-900 w-2 hover:bg-indigo-500/40"
+                : "bg-gray-500 w-2 hover:bg-indigo-500/40"
             }`}
           />
         ))}
