@@ -1,26 +1,27 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import { useMovies } from "../context/MovieContext";
 import { getImageUrl } from "../services/api";
+import { fetchMoviesDetails } from "../services/api";
 
 export default function MovieDetail({ movieId, onClose }) {
   const [movie, setMovie] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    async function fetchMoviesDetails() {
+    async function getMoviesDetails() {
       try {
-        setLoading(true);
+        setIsLoading(true);
         const movieData = await fetchMoviesDetails(movieId);
         setMovie(movieData);
       } catch (err) {
+        console.error("Error fetching movie details:", err);
         setError(err);
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     }
-    fetchMoviesDetails();
+    getMoviesDetails();
   }, [movieId]);
 
   if (!movieId) return null;
@@ -40,8 +41,8 @@ export default function MovieDetail({ movieId, onClose }) {
     if (!revenue) return "N/A";
     return new Intl.NumberFormat("en-US", {
       style: "currency",
-      cureency: "USD",
-      natation: "compact",
+      currency: "USD",
+      notation: "compact",
       maximumFractionDigits: 1,
     }).format(revenue);
   };
@@ -117,7 +118,7 @@ export default function MovieDetail({ movieId, onClose }) {
                 <div className="w-full h-full bg-neutral-700"></div>
               )}
               {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-neutral-800 via-neutral-800/70 to-transparent"></div>
+              <div className="absolute inset-0 bg-linear-to-t from-neutral-800 via-neutral-800/70 to-transparent"></div>
             </div>
 
             <div className="p-6 md:p-8">
@@ -132,7 +133,7 @@ export default function MovieDetail({ movieId, onClose }) {
                         className="w-full h-auto"
                       />
                     ) : (
-                      <div className="w-full aspect-[2/3] bg-neutral-700 flex items-center justify-center text-white text-center p-4">
+                      <div className="w-full aspect-2/3 bg-neutral-700 flex items-center justify-center text-white text-center p-4">
                         No Poster Available
                       </div>
                     )}

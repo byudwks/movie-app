@@ -52,7 +52,7 @@ export default function MovieSlider({ title, subtitle, movies = [] }) {
           </div>
           <div className="flex space-x-2">
             <button
-              className="p-2 rounded-full bg-neutral-800/70 hover:bg-neutral-700 text-white transition-all"
+              className="p-2 rounded-full bg-neutral-800/70 hover:bg-neutral-700 text-white transition-all cursor-pointer"
               aria-label="scroll left"
               onClick={() => handleScroll("left")}>
               <svg
@@ -70,7 +70,7 @@ export default function MovieSlider({ title, subtitle, movies = [] }) {
               </svg>
             </button>
             <button
-              className="p-2 rounded-full bg-neutral-800/70 hover:bg-neutral-700 text-white transition-all"
+              className="p-2 rounded-full bg-neutral-800/70 hover:bg-neutral-700 text-white transition-all cursor-pointer"
               aria-label="scroll right"
               onClick={() => handleScroll("right")}>
               <svg
@@ -113,7 +113,7 @@ export default function MovieSlider({ title, subtitle, movies = [] }) {
                       {/* movies Info */}
                     </div>
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end bottom-10 p-4">
-                      <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-md flex items-center justify-center gap-1 transition-all text-sm ">
+                      <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-md flex items-center justify-center gap-1 transition-all text-sm cursor-pointer">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           className="h-5 w-5"

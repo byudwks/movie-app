@@ -27,6 +27,10 @@ export default function Genre() {
     LoadGenreMovies();
   }, [selectedGenre]);
 
+  const handleMovieClick = (movieId) => {
+    openMovieDetail(movieId);
+  };
+
   if (loading || !selectedGenre) {
     return (
       <section className="py-12 bg-neutral-900">
@@ -58,7 +62,7 @@ export default function Genre() {
             {genres.slice(0, 10).map((genre) => {
               return (
                 <button
-                  className={`px-4 py-2 rounded-md transition-colors text-sm ${selectedGenre.id === genre.id ? "bg-indigo-600 text-white" : "bg-neutral-800 text-neutral-400 hover:bg-neutral-700"}`}
+                  className={`px-4 py-2 rounded-md transition-colors text-sm cursor-pointer mt-3 ${selectedGenre.id === genre.id ? "bg-indigo-600 text-white" : "bg-neutral-800 text-white hover:ring ring-indigo-600 hover:text-indigo-500"}`}
                   onClick={() => setSelectedGenre(genre)}>
                   {genre.name}
                 </button>
@@ -78,7 +82,12 @@ export default function Genre() {
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
             {genreMovies.map((movie) => {
               return (
-                <div className="group cursor-pointer">
+                <div
+                  className="group cursor-pointer"
+                  key={movie.id}
+                  onMouseEnter={() => setHoveredMovieId(movie.id)}
+                  onMouseLeave={() => setHoveredMovieId(null)}
+                  onClick={() => handleMovieClick(movie.id)}>
                   <div className="relative rounded-lg overflow-hidden bg-neutral-800">
                     <div className="aspect-2/3">
                       <img
@@ -110,7 +119,7 @@ export default function Genre() {
                           </span>
                         </div>
 
-                        <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-md flex items-center justify-center gap-1 transition-all text-sm">
+                        <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-md flex items-center justify-center gap-1 transition-all text-sm cursor-pointer">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-5 w-5"

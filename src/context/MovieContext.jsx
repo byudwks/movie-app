@@ -20,7 +20,7 @@ export const MovieProvider = ({ children }) => {
   const [genres, setGenres] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedMovies, setSelectedMovies] = useState([]);
+  const [selectedMovies, setSelectedMovies] = useState(null);
 
   useEffect(() => {
     const fetchDataMovies = async () => {
