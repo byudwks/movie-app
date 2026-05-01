@@ -13,11 +13,11 @@ function Navbar() {
   const searchContainerRef = useRef(null);
 
   useEffect(() => {
-    const handleScorelled = () => {
+    const handleScrolled = () => {
       setIsScrolled(window.scrollY > 10);
     };
-    window.addEventListener("scroll", handleScorelled);
-    return () => window.removeEventListener("scroll", handleScorelled);
+    window.addEventListener("scroll", handleScrolled);
+    return () => window.removeEventListener("scroll", handleScrolled);
   }, []);
 
   useEffect(() => {
@@ -76,7 +76,7 @@ function Navbar() {
 
   return (
     <header
-      className={`fixed flex w-full z-50 transition-all duration-300 ${isScrolled ? "bg-neutral-900/95 backdrop-blur-md shadow-lg" : "bg-transparent"}`}>
+      className={`fixed flex w-full z-50 transition-all duration-300 ${isScrolled || isMobileMenuOpen ? "bg-neutral-900/95 backdrop-blur-md shadow-lg" : "bg-transparent"}`}>
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
@@ -253,12 +253,13 @@ function Navbar() {
             )}
           </button>
         </div>
+
         {/* Mobile Navigation Conditional Rendering */}
         {isMobileMenuOpen && (
-          <div className="mt-4 pb-4 space-y-4 md:hidden">
+          <div className="mt-4 pb-4 space-y-4 md:hidden flex flex-col">
             <a
               href="#"
-              className="block text-white hover:text-indigo-400 transition-colors py-2 ">
+              className="block text-white hover:text-indigo-400 transition-colors ">
               Home
             </a>
             <a
@@ -293,7 +294,7 @@ function Navbar() {
                 <div className="absolute right-3 top-2.5">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 text-neutral-400"
+                    className="h-4 w-4 text-white"
                     fill="none"
                     viewBox="0 0 24 24">
                     <circle
@@ -311,7 +312,7 @@ function Navbar() {
                   {/* else */}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 text-neural-400 absolute right-3 top-2.5"
+                    className="h-4 w-4 text-white absolute right-3 top-2.5"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor">
@@ -326,7 +327,7 @@ function Navbar() {
               ) : (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 text-neural-400 absolute right-3 top-2.5"
+                  className="h-4 w-4 text-white absolute right-3 top-2.5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor">
@@ -340,45 +341,47 @@ function Navbar() {
               )}
 
               {/* mobile search result conditional rendering */}
-              {showSearchRsult && searchResults && searchResults.length > 0 && (
-                <div className="absolute mt-2 w-full bg-neutral-800 rounded-lg shadow-lg overflow-hidden z-50">
-                  <ul className="divide-neutral-700 divide-y">
-                    {/* map method  */}
-                    {searchResults.map((movie) => {
-                      return (
-                        <li className="hover:bg-neutral-700">
-                          <button className="flex items-center p-3 w-full text-left">
-                            <div className="w-10 h-14 bg-neutral-700 rounded-full overflow-hidden shrink-0">
-                              {/* conditional rendering */}
-                              <img
-                                src={getImageUrl(movie.poster_path, "w92")}
-                                alt=""
-                                className="w-full h-full object-cover"
-                              />
-                              {/* else */}
-                              <div className="w-full h-full flex items-center justify-center text-neutral-500 text-sm">
-                                No Image
+              {showSearchResults &&
+                searchResults &&
+                searchResults.length > 0 && (
+                  <div className="absolute mt-2 w-full bg-neutral-800 rounded-lg shadow-lg overflow-hidden z-50">
+                    <ul className="divide-neutral-700 divide-y">
+                      {/* map method  */}
+                      {searchResults.map((movie) => {
+                        return (
+                          <li className="hover:bg-neutral-700">
+                            <button className="flex items-center p-3 w-full text-left">
+                              <div className="w-10 h-14 bg-neutral-700 rounded-full overflow-hidden shrink-0">
+                                {/* conditional rendering */}
+                                <img
+                                  src={getImageUrl(movie.poster_path, "w92")}
+                                  alt=""
+                                  className="w-full h-full object-cover"
+                                />
+                                {/* else */}
+                                <div className="w-full h-full flex items-center justify-center text-neutral-500 text-sm">
+                                  No Image
+                                </div>
                               </div>
-                            </div>
 
-                            <div className="ml-3 flex-1">
-                              <p className="text-sm font-medium text-white truncate">
-                                {movie.title}
-                              </p>
-                              <p className="text-sm text-neutral-400">
-                                {movie.release_date?.split("-")[0] || "N/A"}
-                              </p>
-                            </div>
-                          </button>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              )}
+                              <div className="ml-3 flex-1">
+                                <p className="text-sm font-medium text-white truncate">
+                                  {movie.title}
+                                </p>
+                                <p className="text-sm text-neutral-400">
+                                  {movie.release_date?.split("-")[0] || "N/A"}
+                                </p>
+                              </div>
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
 
               {/* conditional rendering */}
-              {showSearchRsult &&
+              {showSearchResults &&
                 searchQuery.trim().length > 2 &&
                 (!searchResults || searchResults.length === 0) &&
                 !isSearching && (
